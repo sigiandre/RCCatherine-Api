@@ -1,0 +1,6 @@
+@RCCatherineApi_HostAddress = http://localhost:5272
+
+GET {{RCCatherineApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

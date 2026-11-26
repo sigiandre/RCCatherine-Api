@@ -1,0 +1,2429 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Representaciones Catherine API",
+    "description": "API ERP, Inventario, Cotizaciones, Ventas, Facturación SUNAT y Despacho",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Auth/trabajadores": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarTrabajadorDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarTrabajadorDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarTrabajadorDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponseDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Catalogo/unidades-sunat": {
+      "get": {
+        "tags": [
+          "Catalogo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Catalogo/productos": {
+      "get": {
+        "tags": [
+          "Catalogo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Catalogo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Producto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Producto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Producto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Catalogo/productos/{id}/precios": {
+      "put": {
+        "tags": [
+          "Catalogo"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarPreciosCatalogoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarPreciosCatalogoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarPreciosCatalogoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Catalogo/equivalencias": {
+      "post": {
+        "tags": [
+          "Catalogo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearEquivalenciaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearEquivalenciaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearEquivalenciaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Catalogo/clientes": {
+      "get": {
+        "tags": [
+          "Catalogo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Catalogo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearClienteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearClienteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearClienteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Catalogo/clientes/{clienteId}/direcciones": {
+      "post": {
+        "tags": [
+          "Catalogo"
+        ],
+        "parameters": [
+          {
+            "name": "clienteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearDireccionClienteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearDireccionClienteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearDireccionClienteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Catalogo/agencias-transporte": {
+      "get": {
+        "tags": [
+          "Catalogo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Catalogo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearAgenciaTransporteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearAgenciaTransporteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearAgenciaTransporteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Inventario/ingresos": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Inventario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearIngresoDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearIngresoDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearIngresoDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Inventario/ajustes": {
+      "post": {
+        "tags": [
+          "Inventario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AjusteInventarioDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AjusteInventarioDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AjusteInventarioDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Inventario/alertas-stock-minimo": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Inventario/kardex/{productoId}": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "parameters": [
+          {
+            "name": "productoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Inventario/proveedores": {
+      "get": {
+        "tags": [
+          "Inventario"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Inventario"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Proveedor"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Proveedor"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Proveedor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/cotizaciones": {
+      "get": {
+        "tags": [
+          "Ventas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ventas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearCotizacionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearCotizacionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearCotizacionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/cotizaciones/{id}/estado": {
+      "patch": {
+        "tags": [
+          "Ventas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CambiarEstadoCotizacionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CambiarEstadoCotizacionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CambiarEstadoCotizacionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/ordenes": {
+      "get": {
+        "tags": [
+          "Ventas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Ventas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearOrdenVentaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearOrdenVentaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CrearOrdenVentaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/pagos": {
+      "post": {
+        "tags": [
+          "Ventas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarPagosOrdenDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarPagosOrdenDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrarPagosOrdenDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/cierre-caja": {
+      "get": {
+        "tags": [
+          "Ventas"
+        ],
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/comprobantes": {
+      "post": {
+        "tags": [
+          "Ventas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmitirComprobanteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmitirComprobanteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmitirComprobanteDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/pendientes-despacho": {
+      "get": {
+        "tags": [
+          "Ventas"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/guias-remision": {
+      "post": {
+        "tags": [
+          "Ventas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmitirGuiaRemisionDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmitirGuiaRemisionDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmitirGuiaRemisionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Ventas/ordenes/{ordenId}/tracking-agencia": {
+      "patch": {
+        "tags": [
+          "Ventas"
+        ],
+        "parameters": [
+          {
+            "name": "ordenId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarTrackingGuiaDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarTrackingGuiaDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActualizarTrackingGuiaDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActualizarPreciosCatalogoDto": {
+        "type": "object",
+        "properties": {
+          "precioMenor": {
+            "type": "number",
+            "format": "double"
+          },
+          "precioMayor": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActualizarTrackingGuiaDto": {
+        "type": "object",
+        "properties": {
+          "numeroGuiaAgencia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AgenciaTransporte": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ruc": {
+            "type": "string",
+            "nullable": true
+          },
+          "razonSocial": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccionAgencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "guiasRemision": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GuiaRemision"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AjusteInventarioDto": {
+        "type": "object",
+        "properties": {
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cantidadUnidadesBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "justificacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CambiarEstadoCotizacionDto": {
+        "type": "object",
+        "properties": {
+          "estado": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Categoria": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "productos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Producto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreRazonSocial": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccionFiscal": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "direcciones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DireccionCliente"
+            },
+            "nullable": true
+          },
+          "cotizaciones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cotizacion"
+            },
+            "nullable": true
+          },
+          "ordenesVenta": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrdenVenta"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ComprobanteElectronico": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVenta": {
+            "$ref": "#/components/schemas/OrdenVenta"
+          },
+          "tipoComprobante": {
+            "type": "string",
+            "nullable": true
+          },
+          "serie": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlativo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEmision": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "tipoDocumentoCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumentoCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreRazonSocialCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "igv": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "saldoDeudor": {
+            "type": "number",
+            "format": "double"
+          },
+          "estadoSunat": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreArchivoXml": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoCdr": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcionCdr": {
+            "type": "string",
+            "nullable": true
+          },
+          "notas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotaCreditoDebito"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Cotizacion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEmision": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaVencimiento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "diasVigencia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/Cliente"
+          },
+          "direccionEntregaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "direccionEntrega": {
+            "$ref": "#/components/schemas/DireccionCliente"
+          },
+          "vendedorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vendedor": {
+            "$ref": "#/components/schemas/Trabajador"
+          },
+          "subtotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "igv": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "detalles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleCotizacion"
+            },
+            "nullable": true
+          },
+          "ordenVenta": {
+            "$ref": "#/components/schemas/OrdenVenta"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearAgenciaTransporteDto": {
+        "type": "object",
+        "properties": {
+          "ruc": {
+            "type": "string",
+            "nullable": true
+          },
+          "razonSocial": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccionAgencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearClienteDto": {
+        "type": "object",
+        "properties": {
+          "tipoDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreRazonSocial": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccionFiscal": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccionesAdicionales": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrearDireccionClienteDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearCotizacionDto": {
+        "type": "object",
+        "properties": {
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "direccionEntregaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "diasVigencia": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "observaciones": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleCotizacionItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearDireccionClienteDto": {
+        "type": "object",
+        "properties": {
+          "etiqueta": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "ubigeo": {
+            "type": "string",
+            "nullable": true
+          },
+          "referencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "esDireccionFiscal": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearEquivalenciaDto": {
+        "type": "object",
+        "properties": {
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "factorUnidadesBase": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearIngresoDto": {
+        "type": "object",
+        "properties": {
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoIngreso": {
+            "type": "string",
+            "nullable": true
+          },
+          "proveedorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fleteInternacional": {
+            "type": "number",
+            "format": "double"
+          },
+          "seguro": {
+            "type": "number",
+            "format": "double"
+          },
+          "aranceles": {
+            "type": "number",
+            "format": "double"
+          },
+          "gastosDesaduanaje": {
+            "type": "number",
+            "format": "double"
+          },
+          "justificacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleIngresoItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CrearOrdenVentaDto": {
+        "type": "object",
+        "properties": {
+          "cotizacionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "direccionEntregaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleCotizacionItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DetalleCotizacion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cotizacionId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cotizacion": {
+            "$ref": "#/components/schemas/Cotizacion"
+          },
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Producto"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunat": {
+            "$ref": "#/components/schemas/UnidadMedidaSunat"
+          },
+          "cantidad": {
+            "type": "number",
+            "format": "double"
+          },
+          "factorConversion": {
+            "type": "number",
+            "format": "double"
+          },
+          "tipoListaPrecio": {
+            "type": "string",
+            "nullable": true
+          },
+          "precioUnitario": {
+            "type": "number",
+            "format": "double"
+          },
+          "subtotal": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DetalleCotizacionItemDto": {
+        "type": "object",
+        "properties": {
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cantidad": {
+            "type": "number",
+            "format": "double"
+          },
+          "tipoListaPrecio": {
+            "type": "string",
+            "nullable": true
+          },
+          "precioPersonalizado": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DetalleIngreso": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ingresoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ingreso": {
+            "$ref": "#/components/schemas/Ingreso"
+          },
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Producto"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunat": {
+            "$ref": "#/components/schemas/UnidadMedidaSunat"
+          },
+          "cantidad": {
+            "type": "number",
+            "format": "double"
+          },
+          "factorConversion": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoUnitarioFob": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoLogisticoProrrateado": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoRealUnitario": {
+            "type": "number",
+            "format": "double"
+          },
+          "subtotal": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DetalleIngresoItemDto": {
+        "type": "object",
+        "properties": {
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cantidad": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoUnitarioFob": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DetalleOrdenVenta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVenta": {
+            "$ref": "#/components/schemas/OrdenVenta"
+          },
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Producto"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunat": {
+            "$ref": "#/components/schemas/UnidadMedidaSunat"
+          },
+          "cantidad": {
+            "type": "number",
+            "format": "double"
+          },
+          "factorConversion": {
+            "type": "number",
+            "format": "double"
+          },
+          "unidadesBaseReservadas": {
+            "type": "number",
+            "format": "double"
+          },
+          "precioUnitario": {
+            "type": "number",
+            "format": "double"
+          },
+          "subtotal": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DireccionCliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/Cliente"
+          },
+          "etiqueta": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "ubigeo": {
+            "type": "string",
+            "nullable": true
+          },
+          "referencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "esDireccionFiscal": {
+            "type": "boolean"
+          },
+          "activo": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmitirComprobanteDto": {
+        "type": "object",
+        "properties": {
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tipoComprobante": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EmitirGuiaRemisionDto": {
+        "type": "object",
+        "properties": {
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fechaTraslado": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "puntoPartida": {
+            "type": "string",
+            "nullable": true
+          },
+          "puntoLlegada": {
+            "type": "string",
+            "nullable": true
+          },
+          "motivoTraslado": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroBultos": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pesoBrutoTotalKg": {
+            "type": "number",
+            "format": "double"
+          },
+          "modalidadTransporte": {
+            "type": "string",
+            "nullable": true
+          },
+          "agenciaTransporteId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "placaVehiculo": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenciaConductor": {
+            "type": "string",
+            "nullable": true
+          },
+          "dniConductor": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombresApellidosConductor": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EquivalenciaProducto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Producto"
+          },
+          "unidadMedidaSunatId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadMedidaSunat": {
+            "$ref": "#/components/schemas/UnidadMedidaSunat"
+          },
+          "factorUnidadesBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "activo": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GuiaRemision": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVenta": {
+            "$ref": "#/components/schemas/OrdenVenta"
+          },
+          "serie": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlativo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEmision": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fechaTraslado": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "puntoPartida": {
+            "type": "string",
+            "nullable": true
+          },
+          "puntoLlegada": {
+            "type": "string",
+            "nullable": true
+          },
+          "motivoTraslado": {
+            "type": "string",
+            "nullable": true
+          },
+          "numeroBultos": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pesoBrutoTotalKg": {
+            "type": "number",
+            "format": "double"
+          },
+          "modalidadTransporte": {
+            "type": "string",
+            "nullable": true
+          },
+          "agenciaTransporteId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "agenciaTransporte": {
+            "$ref": "#/components/schemas/AgenciaTransporte"
+          },
+          "placaVehiculo": {
+            "type": "string",
+            "nullable": true
+          },
+          "licenciaConductor": {
+            "type": "string",
+            "nullable": true
+          },
+          "dniConductor": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombresApellidosConductor": {
+            "type": "string",
+            "nullable": true
+          },
+          "estadoSunat": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoCdr": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ingreso": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "numeroDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipoIngreso": {
+            "type": "string",
+            "nullable": true
+          },
+          "proveedorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "proveedor": {
+            "$ref": "#/components/schemas/Proveedor"
+          },
+          "trabajadorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trabajador": {
+            "$ref": "#/components/schemas/Trabajador"
+          },
+          "fleteInternacional": {
+            "type": "number",
+            "format": "double"
+          },
+          "seguro": {
+            "type": "number",
+            "format": "double"
+          },
+          "aranceles": {
+            "type": "number",
+            "format": "double"
+          },
+          "gastosDesaduanaje": {
+            "type": "number",
+            "format": "double"
+          },
+          "subtotalFob": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCostosLogisticos": {
+            "type": "number",
+            "format": "double"
+          },
+          "totalCostoPuestoAlmacen": {
+            "type": "number",
+            "format": "double"
+          },
+          "justificacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "detalles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleIngreso"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginRequestDto": {
+        "type": "object",
+        "properties": {
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginResponseDto": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiracion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "trabajadorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "rol": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MovimientoKardex": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "productoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/Producto"
+          },
+          "trabajadorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "trabajador": {
+            "$ref": "#/components/schemas/Trabajador"
+          },
+          "tipoMovimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenciaDocumento": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "cantidadUnidadesBase": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoUnitario": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoPromedioResultante": {
+            "type": "number",
+            "format": "double"
+          },
+          "saldoCantidad": {
+            "type": "number",
+            "format": "double"
+          },
+          "saldoValorizado": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NotaCreditoDebito": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comprobanteElectronicoId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comprobanteElectronico": {
+            "$ref": "#/components/schemas/ComprobanteElectronico"
+          },
+          "tipoNota": {
+            "type": "string",
+            "nullable": true
+          },
+          "serie": {
+            "type": "string",
+            "nullable": true
+          },
+          "correlativo": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaEmision": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "codigoMotivoSunat": {
+            "type": "string",
+            "nullable": true
+          },
+          "motivo": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
+          },
+          "extornaMercaderiaKardex": {
+            "type": "boolean"
+          },
+          "estadoSunat": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigoCdr": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcionCdr": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OrdenVenta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numeroOrden": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecha": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cotizacionId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "cotizacion": {
+            "$ref": "#/components/schemas/Cotizacion"
+          },
+          "clienteId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/Cliente"
+          },
+          "direccionEntregaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "direccionEntrega": {
+            "$ref": "#/components/schemas/DireccionCliente"
+          },
+          "vendedorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "vendedor": {
+            "$ref": "#/components/schemas/Trabajador"
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "subtotal": {
+            "type": "number",
+            "format": "double"
+          },
+          "igv": {
+            "type": "number",
+            "format": "double"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "montoPagado": {
+            "type": "number",
+            "format": "double"
+          },
+          "saldoPendiente": {
+            "type": "number",
+            "format": "double"
+          },
+          "numeroGuiaAgencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "detalles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleOrdenVenta"
+            },
+            "nullable": true
+          },
+          "pagos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PagoVenta"
+            },
+            "nullable": true
+          },
+          "comprobanteElectronico": {
+            "$ref": "#/components/schemas/ComprobanteElectronico"
+          },
+          "guiaRemision": {
+            "$ref": "#/components/schemas/GuiaRemision"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PagoVenta": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ordenVenta": {
+            "$ref": "#/components/schemas/OrdenVenta"
+          },
+          "fechaPago": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "metodoPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
+          },
+          "numeroOperacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "registradoPorId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "registradoPor": {
+            "$ref": "#/components/schemas/Trabajador"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Producto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoriaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoria": {
+            "$ref": "#/components/schemas/Categoria"
+          },
+          "unidadBaseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unidadBase": {
+            "$ref": "#/components/schemas/UnidadMedidaSunat"
+          },
+          "precioMenor": {
+            "type": "number",
+            "format": "double"
+          },
+          "precioMayor": {
+            "type": "number",
+            "format": "double"
+          },
+          "costoPromedioPonderado": {
+            "type": "number",
+            "format": "double"
+          },
+          "stockFisico": {
+            "type": "number",
+            "format": "double"
+          },
+          "stockReservado": {
+            "type": "number",
+            "format": "double"
+          },
+          "stockMinimo": {
+            "type": "number",
+            "format": "double"
+          },
+          "stockDisponible": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "equivalencias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EquivalenciaProducto"
+            },
+            "nullable": true
+          },
+          "movimientosKardex": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovimientoKardex"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Proveedor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ruc": {
+            "type": "string",
+            "nullable": true
+          },
+          "razonSocial": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "telefono": {
+            "type": "string",
+            "nullable": true
+          },
+          "contacto": {
+            "type": "string",
+            "nullable": true
+          },
+          "esInternacional": {
+            "type": "boolean"
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "ingresos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ingreso"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarPagoItemDto": {
+        "type": "object",
+        "properties": {
+          "metodoPago": {
+            "type": "string",
+            "nullable": true
+          },
+          "monto": {
+            "type": "number",
+            "format": "double"
+          },
+          "numeroOperacion": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarPagosOrdenDto": {
+        "type": "object",
+        "properties": {
+          "ordenVentaId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pagos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegistrarPagoItemDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegistrarTrabajadorDto": {
+        "type": "object",
+        "properties": {
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "dni": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "rol": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Trabajador": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreCompleto": {
+            "type": "string",
+            "nullable": true
+          },
+          "dni": {
+            "type": "string",
+            "nullable": true
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "passwordHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "rol": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "cotizaciones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cotizacion"
+            },
+            "nullable": true
+          },
+          "ordenesVenta": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrdenVenta"
+            },
+            "nullable": true
+          },
+          "ingresos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Ingreso"
+            },
+            "nullable": true
+          },
+          "movimientosKardex": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MovimientoKardex"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnidadMedidaSunat": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codigoSunat": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "boolean"
+          },
+          "equivalencias": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EquivalenciaProducto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Ingresa tu token JWT. Ejemplo: eyJhbGciOiJIUzI1NiIs...",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
